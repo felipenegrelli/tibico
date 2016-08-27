@@ -17,6 +17,10 @@
 
     <!-- Custom styles for this template -->
     <link href="css/navbar.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+
+    <title><?php echo $page_title; ?></title>
+    
   </head>
 
   <body>

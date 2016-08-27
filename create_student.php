@@ -1,5 +1,5 @@
 <?php
-$page_title = "Tibico - Home";
+$page_title = "Adicionar Aluno";
 include_once 'header.php';
 ?>
 
@@ -7,7 +7,7 @@ include_once 'header.php';
     <div class="container">
 
       <?php
-      echo "Teste";
+      
       ?>
 
     </div> <!-- /container -->
