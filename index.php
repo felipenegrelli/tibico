@@ -1,17 +1,19 @@
 <?php
+//unset($_COOKIE['login']);
+$login_cookie = $_COOKIE['login'];
+
 $page_title = "Tibico - Home";
 include_once 'header.php';
-?>
-
-    // main content of web page must be here!
-    <div class="container">
-
-      <?php
-      echo "Teste";
-      ?>
-
-    </div> <!-- /container -->
-
-<?php
 include_once 'footer.php';
+/*
+if(isset($login_cookie)){
+  $page_title = "Tibico - Home";
+  include_once 'header.php';
+  include_once 'footer.php';
+}
+else{
+  header("location:login.php");
+}
+*/
+
 ?>
