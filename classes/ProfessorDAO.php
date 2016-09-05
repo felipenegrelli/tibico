@@ -13,10 +13,10 @@ class ProfessorDAO extends DB implements IDAO {
 	}
 	 
 	public function listAll() {
-		$sql = "SELECT * FROM professores";
+		$sql = "SELECT * FROM professores p, usuarios u where u.id_usuario = p.id_usuario ORDER BY u.nome";
 		$stmt = DB::prepare($sql);
 		$stmt->execute();
-		return $stmt->fetchAll();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 	 
 	public function insert($professor) {

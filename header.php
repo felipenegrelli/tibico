@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Tibico <?php if(isset($page_title)) echo ' - '.$page_title;?></title>
+  <title>Tibico<?php if(isset($page_title)) echo ' - '.$page_title;?></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -155,7 +151,7 @@ desired effect
           </a>
           <ul class="treeview-menu">
             <li><a href="PagCadastrarCurso.php">Adicionar Novo Curso</a></li>
-            <li><a href="PagExibirProfessores.php">Todos os Cursos</a></li>
+            <li><a href="PagExibirCursos.php">Todos os Cursos</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -170,7 +166,6 @@ desired effect
           </ul>
         </li>
         <li><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
         
       </ul>
       <!-- /.sidebar-menu -->

@@ -1,5 +1,5 @@
 <?php
-class Aluno extends Pessoa {
+class Aluno extends Usuario {
     private $matricula;
     private $nomePai;
     private $nomeMae;

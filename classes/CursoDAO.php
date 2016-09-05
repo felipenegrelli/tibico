@@ -16,7 +16,7 @@ class CursoDAO extends DB implements IDAO {
 		$sql = "SELECT * FROM cursos";
 		$stmt = DB::prepare($sql);
 		$stmt->execute();
-		return $stmt->fetchAll();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 	 
 	public function insert($curso) {

@@ -1,9 +1,10 @@
 <?php
 class Turma {
+
+    private $id = null;
     private $numVagas = null;
     private Calendario $calendario = null;
     private Disciplina $disciplina = null;
-    private  
     private $situacao = null;
     private Professor $professor = null;
     private $listaAlunos = null;
@@ -13,45 +14,74 @@ class Turma {
 
     }
 
-    public function getMatricula()
+    public function getId()
     {
-      return $this->matricula;
+      return $this->id;
     }
 
-    public function setMatricula($matricula)
+    public function setId($id)
     {
-      $this->matricula = $matricula;
+      $this->id = $id;
     }
 
-    public function getNomePai()
+    public function getNumVagas()
     {
-      return $this->nomePai;
+      return $this->numVagas;
     }
 
-    public function setNomePai($nomePai)
+    public function setNumVagas($numVagas)
     {
-      $this->nomePai = $nomePai;
+      $this->numVagas = $numVagas;
     }
 
-    public function getNomeMae()
+    public function getCalendario()
     {
-      return $this->nomeMae;
+      return $this->calendario;
     }
 
-    public function setNomeMae($nomePai)
+    public function setCalendario($calendario)
     {
-      $this->nomePai = $nomeMae;
+      $this->calendario = $calendario;
     }
 
-    public function getStatus()
+    public function getDisciplina()
     {
-      return $this->status;
+      return $this->disciplina;
     }
 
-    public function setStatus($status)
+    public function setDisciplina($disciplina)
     {
-      $this->status = $status;
+      $this->disciplina = $disciplina;
     }
 
+    public function getSituacao()
+    {
+      return $this->situacao;
+    }
+
+    public function setSituacao($situacao)
+    {
+      $this->situacao = $situacao;
+    }
+
+    public function getProfessor()
+    {
+      return $this->professor;
+    }
+
+    public function setProfessor($professor)
+    {
+      $this->professor = $professor;
+    }
+
+    public function getListaAlunos()
+    {
+      return $this->listaAlunos;
+    }
+
+    public function setListaAlunos($listaAlunos)
+    {
+      $this->listaAlunos = $listaAlunos;
+    }
 }
 ?>
