@@ -24,5 +24,14 @@ class ProfessorController{
 
 		return $lista;
 	}
+
+	public function listaProfessorIdUsuario($id){
+		$professorDAO = new ProfessorDAO();
+		$lista = $professorDAO->findByUserId($id);
+
+		return $lista;
+	}
+
+	
 }
 ?>

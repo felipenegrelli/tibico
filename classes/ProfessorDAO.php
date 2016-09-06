@@ -9,7 +9,15 @@ class ProfessorDAO extends DB implements IDAO {
 		$stmt = DB::prepare($sql);
 		$stmt->bindParam(":id",$id, PDO::PARAM_INT);
 		$stmt->execute();
-		return $stmt->fetch();
+		return $stmt->fetch(PDO::FETCH_ASSOC);
+	}
+
+	public function findByUserId($id) {
+	 	$sql = "SELECT * FROM professores WHERE id_usuario = :id";
+		$stmt = DB::prepare($sql);
+		$stmt->bindParam(":id",$id, PDO::PARAM_INT);
+		$stmt->execute();
+		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 	 
 	public function listAll() {

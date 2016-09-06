@@ -1,4 +1,3 @@
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -17,9 +16,6 @@
   </head>
 
   <body>
-    <?php
-
-    ?>
     <div class="container">
       <form class="form-signin" method="POST" action="validaLogin.php">
         <h2 class="form-signin-heading text-center">Acesso ao Tibico</h2>

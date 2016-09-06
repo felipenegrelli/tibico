@@ -1,23 +1,42 @@
 <?php
-	function __autoload($class_name){
-    	require_once 'classes/' . $class_name . '.php';
-  	}
+	session_start();
+	include_once 'Classes/UsuarioController.php';
+	include_once 'Classes/ProfessorController.php';
+	include_once 'Classes/AlunoController.php';
 
 	$login = $_POST['usuario'];
 	$senha = md5($_POST['senha']);
 
-	$usuarioDAO = new UsuarioDAO();
+	$usuarioController = new UsuarioController();
+	$usuario = $usuarioController->validaLogin($login, $senha);
 
-	$resultado = $usuarioDAO->validaLogin($login, $senha);
+	if(isset($usuario))	{
 
-	if($resultado)
-	{
-		setcookie("login",$login);
-		session_start(oid);
+		$_SESSION["id_usuario"] = $usuario['id_usuario'];
+		$_SESSION["nome_usuario"] = $usuario['nome'];
+		$_SESSION["login"] = $usuario['login'];
+
+		$professorController = new ProfessorController();
+		$professor = $professorController->listaProfessorIdUsuario($usuario['id_usuario']);		
+
+		if(isset($professor)){
+			$_SESSION["id_professor"] = $professor['id_professor'];
+		}
+
+		$alunoController = new AlunoController();
+		$aluno = $alunoController->listaAlunoIdUsuario($usuario['id_usuario']);
+
+		if(isset($aluno)){
+			$_SESSION["id_aluno"] = $aluno['id_aluno'];
+		}
+
+
+		
 		header("location:index.php");	    
 	}
 	else
 	{
 		header("location:login.php?error=1");
 	}	
+
 ?>

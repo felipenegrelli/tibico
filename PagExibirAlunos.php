@@ -1,4 +1,5 @@
 <?php
+session_start();
 $page_title = "Exibir Usuarios";
 include_once 'header.php';
 ?>

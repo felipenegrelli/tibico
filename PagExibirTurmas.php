@@ -1,4 +1,5 @@
 <?php
+session_start();
 $page_title = "Exibir Turmas";
 include_once 'header.php';
 include_once 'classes/TurmaController.php';

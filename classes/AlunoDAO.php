@@ -11,6 +11,14 @@ class AlunoDAO extends DB implements IDAO {
 		$stmt->execute();
 		return $stmt->fetch();
 	}
+
+	public function findByUserId($id) {
+	 	$sql = "SELECT * FROM alunos WHERE id_usuario = :id";
+		$stmt = DB::prepare($sql);
+		$stmt->bindParam(":id",$id, PDO::PARAM_INT);
+		$stmt->execute();
+		return $stmt->fetch();
+	}
 	 
 	public function listAll() {
 		$sql = "SELECT * FROM alunos";

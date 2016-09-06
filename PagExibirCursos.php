@@ -1,4 +1,5 @@
 <?php
+session_start();
 $page_title = "Exibir Cursos";
 include_once 'header.php';
 include_once 'classes/CursoController.php';

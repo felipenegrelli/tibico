@@ -39,5 +39,12 @@ class TurmaController{
 
 		return $lista;
 	}
+
+	public function listaTurmasProfessor($id){
+		$turmaDAO = new TurmaDAO();
+		$lista = $turmaDAO->listAllfromProfessor($id);
+
+		return $lista;
+	}
 }
 ?>

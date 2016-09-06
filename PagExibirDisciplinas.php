@@ -1,4 +1,5 @@
 <?php
+session_start();
 $page_title = "Exibir Disciplinas";
 include_once 'header.php';
 include_once 'classes/DisciplinaController.php';

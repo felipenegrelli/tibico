@@ -81,15 +81,15 @@ desired effect
               <!-- The user image in the navbar-->
               <img src="img/user2-160x160.jpg" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Felipe Negrelli Martins</span>
+              <span class="hidden-xs"><?php echo $_SESSION["nome_usuario"];?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
                 <img src="img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 <p>
-                  Felipe Negrelli Martins
-                  <small>20131bsi0106</small>
+                  <?php echo $_SESSION["nome_usuario"];?>
+                  <small><?php echo $_SESSION["login"];?></small>
                 </p>
               </li>
               <!-- Menu Footer-->
@@ -98,7 +98,7 @@ desired effect
                   <a href="#" class="btn btn-default btn-flat">Perfil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Fazer logoff</a>
+                  <a href="logout.php" class="btn btn-default btn-flat">Fazer logoff</a>
                 </div>
               </li>
             </ul>

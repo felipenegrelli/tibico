@@ -73,16 +73,10 @@ class UsuarioDAO extends DB implements IDAO {
 
 	    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-	    var_dump($usuario);
+	   	//var_dump($login);
+	   	//var_dump($senha);
 
-	    if(is_array($usuario))
-		{
-		    return true;
-		}
-		else
-		{
-			return false;
-		}
+	    return $usuario;
   	}
 
 }
