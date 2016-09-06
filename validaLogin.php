@@ -9,7 +9,6 @@
 	$usuarioDAO = new UsuarioDAO();
 
 	$resultado = $usuarioDAO->validaLogin($login, $senha);
-	var_dump($resultado);
 
 	if($resultado)
 	{
