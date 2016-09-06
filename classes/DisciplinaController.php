@@ -1,17 +1,15 @@
 <?php
-include_once 'Turma.php';
-include_once 'TurmaDAO.php';
-include_once 'CalendarioAcademico.php';
-include_once 'Professor.php';
+include_once 'Disciplina.php';
+include_once 'DisciplinaDAO.php';
 
-class TurmaController{
+class DisciplinaController{
 
 	public function __construct()
 	{
 
 	}
 
-	public function inseriTurma($numVagas, $idCalendario, $idDisciplina, $situacao, $idProfessor){
+	public function inseriDisciplina($numVagas, $idCalendario, $idDisciplina, $situacao, $idProfessor){
 
 		$calendario = new Calendario();
 		$calendario->setId($idCalendario);
@@ -33,9 +31,9 @@ class TurmaController{
 		$turmaDAO->insert($turma);
 	}
 
-	public function listaTurmas(){
-		$turmaDAO = new TurmaDAO();
-		$lista = $turmaDAO->listAll();
+	public function listaDisciplinas(){
+		$disciplinaDAO = new DisciplinaDAO();
+		$lista = $disciplinaDAO->listAll();
 
 		return $lista;
 	}

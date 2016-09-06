@@ -1,5 +1,5 @@
 <?php
-class Pessoa {
+class Curso {
 
     private $nome;
     private $regime;

@@ -9,14 +9,14 @@ class TurmaDAO extends DB implements IDAO {
 		$stmt = DB::prepare($sql);
 		$stmt->bindParam(":id",$id, PDO::PARAM_INT);
 		$stmt->execute();
-		return $stmt->fetch();
+		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 	 
 	public function listAll() {
-		$sql = "SELECT * FROM turmas";
+		$sql = "SELECT * FROM turmas t, professores p, usuarios u, calendarios_academicos ca, disciplinas d WHERE t.id_professor = p.id_professor AND p.id_usuario = u.id_usuario AND t.id_calendario = ca.id_calendario AND t.id_disciplina = d.id_disciplina";
 		$stmt = DB::prepare($sql);
 		$stmt->execute();
-		return $stmt->fetchAll();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 	 
 	public function insert($turma) {
@@ -39,7 +39,7 @@ class TurmaDAO extends DB implements IDAO {
 	    $stmt->bindParam(":id_disciplina", $turma->getDisciplina()->getId());
 	    $stmt->bindParam(":id_calendario", $turma->getCalendario()->getId());
 	    $stmt->bindParam(":id_professor", $turma->getProfessor()->getId());
-	    $stmt->bindParam(":id_turma", $turma->getId();
+	    $stmt->bindParam(":id_turma", $turma->getId());
 
 
 		$stmt->execute();

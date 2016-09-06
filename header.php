@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Tibico<?php if(isset($page_title)) echo ' - '.$page_title;?></title>
   <!-- Tell the browser to be responsive to screen width -->
@@ -132,6 +133,7 @@ desired effect
             <li><a href="PagExibirAlunos.php">Todos os Alunos</a></li>
           </ul>
         </li>
+
         <li class="treeview">
           <a href="#"><i class="fa fa-user"></i> <span>Professores</span>
             <span class="pull-right-container">
@@ -143,6 +145,7 @@ desired effect
             <li><a href="PagExibirProfessores.php">Todos os Professores</a></li>
           </ul>
         </li>
+
         <li class="treeview">
           <a href="#"><i class="fa fa-user"></i> <span>Cursos</span>
             <span class="pull-right-container">
@@ -154,18 +157,20 @@ desired effect
             <li><a href="PagExibirCursos.php">Todos os Cursos</a></li>
           </ul>
         </li>
+
         <li class="treeview">
-          <a href="#"><i class="fa fa-user"></i> <span>Turmas</span>
+          <a href="#"><i class="fa fa-user"></i> <span>Disciplinas</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="PagCadastrarTurma.php">Adicionar Novo Turma</a></li>
-            <li><a href="PagExibirTurmas.php">Todos os Turmas</a></li>
+            <li><a href="PagCadastrarDisciplina.php">Adicionar Novo Disciplina</a></li>
+            <li><a href="PagExibirDisciplinas.php">Todos as Discplinas</a></li>
           </ul>
         </li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
+
+        <li><a href="PagExibirTurmas.php"><i class="fa fa-link"></i> <span>Turmas</span></a></li>
         
       </ul>
       <!-- /.sidebar-menu -->
@@ -179,7 +184,7 @@ desired effect
     <section class="content-header">
       <h1>
         <?php if(isset($page_title)) echo $page_title;?>
-        <small>Principais Atividades</small>
+        <!--<small>Principais Atividades</small>-->
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>

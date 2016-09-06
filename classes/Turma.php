@@ -3,10 +3,10 @@ class Turma {
 
     private $id = null;
     private $numVagas = null;
-    private Calendario $calendario = null;
-    private Disciplina $disciplina = null;
+    private $calendario = null;
+    private $disciplina = null;
     private $situacao = null;
-    private Professor $professor = null;
+    private $professor = null;
     private $listaAlunos = null;
 
     public function __construct()

@@ -32,9 +32,10 @@ $listaCursos = $cursoController->listaCursos();
 					<th class="col-sm-1">ID</th>
 					<th class="col-sm-3">Nome</th>
 					<th class="col-sm-1">Sigla</th>
-					<th class="col-sm-2">Regime</th>
-					<th class="col-sm-2">Duração</th>
+					<th class="col-sm-1">Regime</th>
+					<th class="col-sm-1">Duração</th>
 					<th class="actions col-sm-2">Ações</th>
+					<th class="actions col-sm-1">Outras Ações</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -50,6 +51,9 @@ $listaCursos = $cursoController->listaCursos();
 						<a class="btn btn-success btn-xs" href="view.html">Visualizar</a>
 						<a class="btn btn-warning btn-xs" href="edit.html">Editar</a>
 						<a class="btn btn-danger btn-xs"  href="#" data-toggle="modal" data-target="#delete-modal">Excluir</a>';
+					echo '</td>';
+					echo '<td class="actions text-center">
+						<a class="btn btn-info btn-xs" href="PagInserirDisciplina.php?id_curso='.$row['id_curso'].'">Inserir Disciplina</a>';
 					echo '</td>';
 				echo '</tr>';
 			}

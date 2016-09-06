@@ -3,32 +3,11 @@ $page_title = "Cadastrar Turma";
 include_once 'header.php';
 include_once 'classes/ProfessorController.php';
 
-$turmaController = new TurmaController();
-$listaCursoss = $turmaController->listaCursos();
-
-
+$professorController = new ProfessorController();
+$listaProfessores = $professorController->listaProfessores();
 ?>
 
 <div class="container-flow">    
-
-    <form action="index.html">
-  	  <div class="form-group col-md-6">
-  	  	<label for="curso">Curso</label>
-          <select id="curso" name="curso" class="form-control">
-            <option value=""></option>
-            <option value="1">Sistemas de Informação</option>
-            <option value="2">Engenharia de Atuomação e Controle</option>
-          </select>
-  	  </div>
-
-      <div class="form-group col-md-6">
-        <label for="disciplina">Disciplina</label>
-          <select id="curso" name="curso" class="form-control">
-            <option value=""></option>
-            <option value="1">Sistemas Operacionais</option>
-            <option value="2">Calculo 1</option>
-          </select>
-      </div>
 
       <div class="form-group col-md-6">
         <label for="calendario">Calendario</label>
@@ -44,11 +23,11 @@ $listaCursoss = $turmaController->listaCursos();
           <select id="professor" name="professor" class="form-control">
             <option value=""></option>
             <?php
+
             foreach ($listaProfessores as $row) {
-
               echo '<option value="'.$row['id_professor'].'">'.$row['nome'].'</option>';
-
             }
+
             ?>
           </select>
       </div>  

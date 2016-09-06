@@ -1,15 +1,15 @@
 <?php
-$page_title = "Exibir Turmas";
+$page_title = "Exibir Disciplinas";
 include_once 'header.php';
-include_once 'classes/TurmaController.php';
+include_once 'classes/DisciplinaController.php';
 
-$turmaController = new TurmaController();
-$listaTurmas = $turmaController->listaTurmas();
+$disciplinaController = new DisciplinaController();
+$listaDisciplinas = $disciplinaController->listaDisciplinas();
+
 ?>
-
  	<div id="top" class="row">
  		<div class="col-sm-6">
-			<a href="pagCadastrarTurma.php" class="btn btn-primary pull-left h2">Nova Turma</a>
+			<a href="PagCadastrarCurso.php" class="btn btn-primary pull-left h2">Novo Curso</a>
 		</div>
 		<div class="col-sm-6">			
 			<div class="input-group h2">
@@ -26,38 +26,33 @@ $listaTurmas = $turmaController->listaTurmas();
  
  	<div id="list" class="row">
 	
-	<div class="table col-md-12">
-		<table class="table table-striped table-hover" cellspacing="0" cellpadding="0">
+	<div class="table-responsive col-md-12">
+		<table class="table table-striped" cellspacing="0" cellpadding="0">
 			<thead>
 				<tr>
 					<th class="col-sm-1">ID</th>
-					<th class="col-sm-3">Disciplina</th>
-					<th class="col-sm-1">Periodo</th>
-					<th class="col-sm-2">Professor</th>
-					<th class="col-sm-1">Vagas</th>
-					<th class="col-sm-1">Status</th>
+					<th class="col-sm-4">Nome</th>
+					<th class="col-sm-3">Curso</th>
+					<th class="col-sm-1">Período</th>
 					<th class="actions col-sm-2">Ações</th>
-					<th class="actions col-sm-3">Outros</th>
+					<th class="actions col-sm-1">Outros</th>
 				</tr>
 			</thead>
 			<tbody>
 			<?php
-			foreach ($listaTurmas as $row) {
+			foreach ($listaDisciplinas as $row) {
 				echo '<tr>';
-					echo '<td class="text-center">'.$row['id_turma'].'</td>';
+					echo '<td class="text-center">'.$row['id_disciplina'].'</td>';
 					echo '<td>'.$row['nome_disciplina'].'</td>';
-					echo '<td class="text-center">'.$row['identificador'].'</td>';
 					echo '<td class="text-center">'.$row['nome'].'</td>';
-					echo '<td class="text-center">'.$row['num_vagas'].'</td>';
-					echo '<td class="text-center">'.$row['situacao'].'</td>';
-					echo '<td class="actions text-center">';
-						echo '<a class="btn btn-success btn-xs" href="view.html">Visualizar</a>';
-						echo '<a class="btn btn-warning btn-xs" href="edit.html">Editar</a>';
-						echo '<a class="btn btn-danger btn-xs"  href="#" data-toggle="modal" data-target="#delete-modal">Excluir</a>';
+					echo '<td class="text-center">'.$row['periodo_correspondente'].'</td>';
+					echo '<td class="actions text-center">
+						<a class="btn btn-success btn-xs" href="view.html">Visualizar</a>
+						<a class="btn btn-warning btn-xs" href="edit.html">Editar</a>
+						<a class="btn btn-danger btn-xs"  href="#" data-toggle="modal" data-target="#delete-modal">Excluir</a>';
 					echo '</td>';
-					echo '<td class="actions text-center">';
-						echo '<a class="btn btn-info btn-xs" href="view.html">Avaliação</a>';
-						echo '<a class="btn btn-info btn-xs" href="edit.html">Chamada</a>';
+					echo '<td class="actions text-center">
+						<a class="btn btn-info btn-xs" href="PagCadastrarTurma.php?id_disciplina='.$row['id_disciplina'].'">Inserir Turma</a>';
 					echo '</td>';
 				echo '</tr>';
 			}
@@ -68,6 +63,17 @@ $listaTurmas = $turmaController->listaTurmas();
 	
 	</div> <!-- /#list -->
 	
+	<div id="bottom" class="row">
+		<div class="col-md-12">
+			<ul class="pagination">
+				<li class="disabled"><a>&lt; Anterior</a></li>
+				<li class="disabled"><a>1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li class="next"><a href="#" rel="next">Próximo &gt;</a></li>
+			</ul><!-- /.pagination -->
+		</div>
+	</div> <!-- /#bottom -->
 
 <!-- Modal -->
 <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
