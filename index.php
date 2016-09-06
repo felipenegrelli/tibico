@@ -1,6 +1,6 @@
 <?php
 //unset($_COOKIE['login']);
-$login_cookie = $_COOKIE['login'];
+//$login_cookie = $_COOKIE['login'];
 
 $page_title = "Tibico - Home";
 include_once 'header.php';
