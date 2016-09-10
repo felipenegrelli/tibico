@@ -40,11 +40,25 @@ class TurmaController{
 		return $lista;
 	}
 
+	public function listaTurmasPorId($id){
+		$turmaDAO = new TurmaDAO();
+		$turma = $turmaDAO->findById($id);
+
+		return $turma;
+	}
+
 	public function listaTurmasProfessor($id){
 		$turmaDAO = new TurmaDAO();
 		$lista = $turmaDAO->listAllfromProfessor($id);
 
 		return $lista;
+	}
+
+	public function listaAlunosTurma($idTurma){
+		$turmaDAO = new TurmaDAO();
+		$listaAlunos = $turmaDAO->listStudentsFromClass($idTurma);
+
+		return $listaAlunos;
 	}
 }
 ?>

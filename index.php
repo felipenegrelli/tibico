@@ -5,7 +5,7 @@ include_once 'classes/TurmaController.php';
 
 
 if(isset($_SESSION["id_usuario"])){
-	$page_title = "Tibico - Home";
+	$page_title = "Minhas Turmas";
 	include_once 'header.php';
 
 
@@ -35,8 +35,8 @@ if(isset($_SESSION["id_usuario"])){
 							echo '<td class="text-center">'.$row['identificador'].'</td>';
 							echo '<td class="text-center">'.$row['num_vagas'].'</td>';
 							echo '<td class="actions text-center">';
-								echo '<a class="btn btn-info btn-xs" href="view.html">Avaliações</a>';
-								echo '<a class="btn btn-info btn-xs" href="edit.html">Aulas</a>';
+								echo '<a class="btn btn-info btn-xs" href="PagExibirAvaliacoes.php?id_turma='.$row['id_turma'].'">Avaliações</a>';
+								echo '<a class="btn btn-info btn-xs" href="PagExibirAulas.php?id_turma='.$row['id_turma'].'">Aulas</a>';
 							echo '</td>';
 						echo '</tr>';
 					}
