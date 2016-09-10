@@ -9,50 +9,56 @@ class AlunoDAO extends DB implements IDAO {
 		$stmt = DB::prepare($sql);
 		$stmt->bindParam(":id",$id, PDO::PARAM_INT);
 		$stmt->execute();
-		return $stmt->fetch();
-	}
-
-	public function findByUserId($id) {
-	 	$sql = "SELECT * FROM alunos WHERE id_usuario = :id";
-		$stmt = DB::prepare($sql);
-		$stmt->bindParam(":id",$id, PDO::PARAM_INT);
-		$stmt->execute();
-		return $stmt->fetch();
+		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 	 
 	public function listAll() {
 		$sql = "SELECT * FROM alunos";
 		$stmt = DB::prepare($sql);
 		$stmt->execute();
-		return $stmt->fetchAll();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
-	 
+
+	public function findByUserId($id) {
+		$sql = "SELECT * FROM alunos WHERE id_usuario = :id";
+		$stmt = DB::prepare($sql);
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
 	public function insert($aluno) {
-		$sql = "INSERT INTO alunos (matricula, nome_pai, nome_mae, situacao) VALUES (:matricula, :nome_pai, :nome_mae, :situacao)";
+		/*
+		$sql = "INSERT INTO avaliacoes (tipo_avaliacao, peso, data, id_turma) VALUES (:tipo_avaliacao, :peso, :data, :id_turma)";
 	    $stmt = DB::prepare($sql);
-	    $stmt->bindParam(":matricula", $aluno->getMatricula());
-	    $stmt->bindParam(":nome_pai", $aluno->getNomePai());
-	    $stmt->bindParam(":nome_mae", $aluno->getNomeMae());
-	    $stmt->bindParam(":situacao", $aluno->getSituacao());
+	    $stmt->bindParam(":tipo_avaliacao", $avaliacao->getTipoAvaliacao());
+	    $stmt->bindParam(":peso", $avaliacao->getPeso());
+	    $stmt->bindParam(":data", $avaliacao->getData());
+	    $stmt->bindParam(":id_turma", $avaliacao->getTurma()->getId());
 
 	    $stmt->execute();
+	    */
 	}
 
 	public function update($aluno) {
-		$sql = "UPDATE alunos SET matricula = :matricula, nome_pai = :nome_pai, nome_mae = :nome_mae, situacao = :situacao WHERE id_aluno = :id";
+		/*
+		$sql = "UPDATE avaliacoes SET tipo_avaliacao = :tipo_avaliacao, peso = :peso, data = :data, id_turma = :id_turma WHERE id_avaliacao = :id";
 		$stmt = DB::prepare($sql);
-		$stmt->bindParam(":matricula", $aluno->getMatricula());
-	    $stmt->bindParam(":nome_pai", $aluno->getNomePai());
-	    $stmt->bindParam(":nome_mae", $aluno->getNomeMae());
-	    $stmt->bindParam(":situacao", $aluno->getSituacao());
+		$stmt->bindParam(":tipo_avaliacao", $avaliacao->getTipoAvaliacao());
+	    $stmt->bindParam(":peso", $avaliacao->getPeso());
+	    $stmt->bindParam(":data", $avaliacao->getData());
+	    $stmt->bindParam(":id_turma", $avaliacao->getTurma()->getId());
+	    $stmt->bindParam(":id", $avaliacao->getId());
 
 		$stmt->execute();
+		*/
 	}
+
 
 	public function delete($id) {
 		$sql = "DELETE FROM alunos WHERE id_aluno = :id";
 		$stmt = DB::prepare($sql);
-		$stmt->bindParam(":id",$id, PDO::PARAM_INT);
+		$stmt->bindParam(":id_aluno",$id, PDO::PARAM_INT);
 		$stmt->execute();
 		return $stmt->fetch();
 	}

@@ -5,7 +5,7 @@ include_once 'IDAO.php';
 class TurmaDAO extends DB implements IDAO {
 
 	public function findById($id) {
-	 	$sql = "SELECT * FROM turmas WHERE id_turma = :id";
+	 	$sql = "SELECT * FROM turmas t, disciplinas d, calendarios_academicos ca WHERE t.id_disciplina = d.id_disciplina AND t.id_calendario = ca.id_calendario AND id_turma = :id";
 		$stmt = DB::prepare($sql);
 		$stmt->bindParam(":id",$id, PDO::PARAM_INT);
 		$stmt->execute();
@@ -26,6 +26,17 @@ class TurmaDAO extends DB implements IDAO {
 		$stmt->execute();
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
+
+	public function listStudentsFromClass($idTurma) {
+		$sql = "SELECT * FROM alunos_turmas at, alunos a, usuarios u WHERE at.id_aluno = a.id_aluno AND a.id_usuario = u.id_usuario AND at.id_turma = :id_turma";		
+		$stmt = DB::prepare($sql);
+		$stmt->bindParam(":id_turma", $idTurma);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+
+	
 	 
 	 
 	public function insert($turma) {
