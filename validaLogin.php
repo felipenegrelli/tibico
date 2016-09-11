@@ -8,7 +8,7 @@
 	$senha = $_POST['senha'];
 
 	$usuarioController = new UsuarioController();
-	$usuario = $usuarioController->validaLogin($login, $senha);
+	$usuario = $usuarioController->validaLogin($login, md5($senha));
 
 	if($usuario){
 		$_SESSION["id_usuario"] = $usuario['id_usuario'];
