@@ -60,5 +60,12 @@ class TurmaController{
 
 		return $listaAlunos;
 	}
+
+	public function listaTurmasAluno($idTurma){
+		$turmaDAO = new TurmaDAO();
+		$listaAlunos = $turmaDAO->listAllFromStudent($idTurma);
+
+		return $listaAlunos;
+	}
 }
 ?>

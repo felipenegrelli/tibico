@@ -5,16 +5,16 @@
 	include_once 'Classes/AlunoController.php';
 
 	$login = $_POST['usuario'];
-	$senha = md5($_POST['senha']);
+	$senha = $_POST['senha'];
 
 	$usuarioController = new UsuarioController();
 	$usuario = $usuarioController->validaLogin($login, $senha);
 
-	if(isset($usuario))	{
-
+	if($usuario){
 		$_SESSION["id_usuario"] = $usuario['id_usuario'];
 		$_SESSION["nome_usuario"] = $usuario['nome'];
 		$_SESSION["login"] = $usuario['login'];
+		$_SESSION['sexo'] = $usuario['sexo'];
 
 		$professorController = new ProfessorController();
 		$professor = $professorController->listaProfessorIdUsuario($usuario['id_usuario']);		
@@ -29,13 +29,9 @@
 		if(isset($aluno)){
 			$_SESSION["id_aluno"] = $aluno['id_aluno'];
 		}
-
-
-		
 		header("location:index.php");	    
-	}
-	else
-	{
+	}else{
+
 		header("location:login.php?error=1");
 	}	
 

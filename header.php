@@ -123,18 +123,22 @@ desired effect
         <li><a href="index.php"><i class="fa fa-home"></i> <span>Home</span></a></li>
         <!-- Optionally, you can add icons to the links -->
         <li class="treeview">
-          <a href="#"><i class="fa fa-graduation-cap"></i> <span>Alunos</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="PagCadastrarAluno.php">Adicionar Novo Aluno</a></li>
-            <li><a href="PagExibirAlunos.php">Todos os Alunos</a></li>
-          </ul>
-        </li>
-
-        <li class="treeview">
+        <?php if(!$_SESSION["id_aluno"]){?>
+            <a href="#"><i class="fa fa-graduation-cap"></i> <span>Alunos</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <?php if(!$_SESSION["id_professor"]){?>
+                <li><a href="PagCadastrarAluno.php">Adicionar Novo Aluno</a></li>
+              <?php } ?>
+              <li><a href="PagExibirAlunos.php">Todos os Alunos</a></li>
+            </ul>
+          </li>
+        <?php } ?>
+        <?php if(!$_SESSION["id_professor"] && !$_SESSION["id_aluno"]){?>
+         <li class="treeview">
           <a href="#"><i class="fa fa-user"></i> <span>Professores</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -145,30 +149,39 @@ desired effect
             <li><a href="PagExibirProfessores.php">Todos os Professores</a></li>
           </ul>
         </li>
+        <?php } ?>
 
-        <li class="treeview">
-          <a href="#"><i class="fa fa-user"></i> <span>Cursos</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="PagCadastrarCurso.php">Adicionar Novo Curso</a></li>
-            <li><a href="PagExibirCursos.php">Todos os Cursos</a></li>
-          </ul>
-        </li>
+        <?php if(!$_SESSION["id_aluno"]){?>
+          <li class="treeview">
+            <a href="#"><i class="fa fa-user"></i> <span>Cursos</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <?php if(!$_SESSION["id_professor"]){?>
+                <li><a href="PagCadastrarCurso.php">Adicionar Novo Curso</a></li>
+              <?php } ?>
+              <li><a href="PagExibirCursos.php">Todos os Cursos</a></li>
+            </ul>
+          </li>
+        <?php } ?>
 
-        <li class="treeview">
-          <a href="#"><i class="fa fa-user"></i> <span>Disciplinas</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="PagCadastrarDisciplina.php">Adicionar Novo Disciplina</a></li>
-            <li><a href="PagExibirDisciplinas.php">Todos as Discplinas</a></li>
-          </ul>
-        </li>
+        <?php if(!$_SESSION["id_aluno"]){?>
+          <li class="treeview">
+            <a href="#"><i class="fa fa-user"></i> <span>Disciplinas</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <?php if(!$_SESSION["id_professor"]){?>
+                <li><a href="PagCadastrarDisciplina.php">Adicionar Novo Disciplina</a></li>
+              <?php } ?>
+              <li><a href="PagExibirDisciplinas.php">Todos as Discplinas</a></li>
+            </ul>
+          </li>
+        <?php } ?>
 
         <li><a href="PagExibirTurmas.php"><i class="fa fa-link"></i> <span>Turmas</span></a></li>
         

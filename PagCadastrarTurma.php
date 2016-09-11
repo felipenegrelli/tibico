@@ -70,7 +70,7 @@ $listaProfessores = $professorController->listaProfessores();
       </div>
       <div class="form-group col-md-1">
         <label for="vagas"> </label>
-        <button type="submit" class="btn btn-primary">Inserir</button>
+        <button type="submit" id="setHoras" class="btn btn-primary">Inserir</button>
       </div>
 
 
@@ -91,3 +91,8 @@ $listaProfessores = $professorController->listaProfessores();
 <?php
 include_once 'footer.php';
 ?>
+
+
+<script>
+
+</script>

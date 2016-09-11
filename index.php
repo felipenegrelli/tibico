@@ -5,9 +5,13 @@ include_once 'classes/TurmaController.php';
 
 
 if(isset($_SESSION["id_usuario"])){
-	$page_title = "Minhas Turmas";
-	include_once 'header.php';
+	if($_SESSION['sexo'] == "M")
+		$page_title = "Bem vindo, ".$_SESSION['nome_usuario'].".";
+	else
+		$page_title = "Bem vinda, ".$_SESSION['nome_usuario'].".";
 
+	
+	include_once 'header.php';
 
 	if(isset($_SESSION["id_professor"])){
 
