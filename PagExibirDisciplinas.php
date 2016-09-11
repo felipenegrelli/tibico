@@ -10,7 +10,7 @@ $listaDisciplinas = $disciplinaController->listaDisciplinas();
 ?>
  	<div id="top" class="row">
  		<div class="col-sm-6">
-			<a href="PagCadastrarCurso.php" class="btn btn-primary pull-left h2">Novo Curso</a>
+			<a href="PagCadastrarDisciplina.php?id_" class="btn btn-primary pull-left h2">Novo Disciplina</a>
 		</div>
 		<div class="col-sm-6">			
 			<div class="input-group h2">
@@ -53,7 +53,7 @@ $listaDisciplinas = $disciplinaController->listaDisciplinas();
 						<a class="btn btn-danger btn-xs"  href="#" data-toggle="modal" data-target="#delete-modal">Excluir</a>';
 					echo '</td>';
 					echo '<td class="actions text-center">
-						<a class="btn btn-info btn-xs" href="PagCadastrarTurma.php?id_disciplina='.$row['id_disciplina'].'">Inserir Turma</a>';
+						<a class="btn btn-info btn-xs" href="PagExibirTurmas.php?id_disciplina='.$row['id_disciplina'].'">Turmas</a>';
 					echo '</td>';
 				echo '</tr>';
 			}
@@ -63,18 +63,6 @@ $listaDisciplinas = $disciplinaController->listaDisciplinas();
 	</div>
 	
 	</div> <!-- /#list -->
-	
-	<div id="bottom" class="row">
-		<div class="col-md-12">
-			<ul class="pagination">
-				<li class="disabled"><a>&lt; Anterior</a></li>
-				<li class="disabled"><a>1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li class="next"><a href="#" rel="next">Próximo &gt;</a></li>
-			</ul><!-- /.pagination -->
-		</div>
-	</div> <!-- /#bottom -->
 
 <!-- Modal -->
 <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">

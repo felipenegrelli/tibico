@@ -1,5 +1,6 @@
 <?php
 include_once 'Usuario.php';
+
 class Professor extends Usuario {
     private $formacaoAcademica;
     private $areaAtuacao;

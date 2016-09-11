@@ -150,6 +150,7 @@ desired effect
             <li><a href="PagExibirProfessores.php">Todos os Professores</a></li>
           </ul>
         </li>
+<<<<<<< HEAD
         <?php } ?>
 
         <?php if(!$_SESSION["id_aluno"]){?>
@@ -184,7 +185,11 @@ desired effect
           </li>
         <?php } ?>
 
+        <li><a href="PagExibirTurmas.php"><i class="fa fa-link"></i> <span>Turmas</span></a></li>
+=======
+
         <li><a href="PagExibirCursos.php"><i class="fa fa-link"></i> <span>Cursos</span></a></li>
+>>>>>>> rf07
         
       </ul>
       <!-- /.sidebar-menu -->

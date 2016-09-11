@@ -25,7 +25,7 @@ class TurmaDAO extends DB implements IDAO {
 		$stmt->bindParam(":id", $id);
 		$stmt->execute();
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
-	}
+	}	
 
 	public function listAllFromStudent($id) {
 		$sql = "SELECT turmas.id_turma, disciplinas.nome_disciplina, calendarios_academicos.identificador,
@@ -47,6 +47,14 @@ class TurmaDAO extends DB implements IDAO {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+	public function listAllActivefromProfessor($id) {
+		$sql = "SELECT * FROM turmas t, professores p, usuarios u, calendarios_academicos ca, disciplinas d WHERE t.id_professor = p.id_professor AND p.id_usuario = u.id_usuario AND t.id_calendario = ca.id_calendario AND t.id_disciplina = d.id_disciplina AND t.id_professor = :id AND t.situacao_turma = 1";		
+		$stmt = DB::prepare($sql);
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
 	public function listStudentsFromClass($idTurma) {
 		$sql = "SELECT * FROM alunos_turmas at, alunos a, usuarios u WHERE at.id_aluno = a.id_aluno AND a.id_usuario = u.id_usuario AND at.id_turma = :id_turma";		
 		$stmt = DB::prepare($sql);
@@ -54,6 +62,8 @@ class TurmaDAO extends DB implements IDAO {
 		$stmt->execute();
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
+<<<<<<< HEAD
+=======
 
 	public function listClassesFromSubject($idDisciplina) {
 		$sql = "SELECT * FROM turmas t, professores p, usuarios u, calendarios_academicos ca, disciplinas d WHERE t.id_professor = p.id_professor AND p.id_usuario = u.id_usuario AND t.id_calendario = ca.id_calendario AND t.id_disciplina = d.id_disciplina AND t.id_disciplina = :id";		
@@ -62,6 +72,7 @@ class TurmaDAO extends DB implements IDAO {
 		$stmt->execute();
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}	 
+>>>>>>> rf07
 	 
 	public function insert($turma) {
 

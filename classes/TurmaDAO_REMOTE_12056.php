@@ -27,20 +27,8 @@ class TurmaDAO extends DB implements IDAO {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-	public function listAllFromStudent($id) {
-		$sql = "SELECT turmas.id_turma, disciplinas.nome_disciplina, calendarios_academicos.identificador,
-				usuarios.nome
-
-				from alunos_turmas
-
-				LEFT JOIN turmas on alunos_turmas.id_turma = turmas.id_turma
-				LEFT JOIN calendarios_academicos on calendarios_academicos.id_calendario = turmas.id_calendario
-				LEFT JOIN disciplinas on turmas.id_disciplina = disciplinas.id_disciplina
-				LEFT join professores on turmas.id_professor = professores.id_professor
-				LEFT JOIN usuarios on usuarios.id_usuario = professores.id_usuario
-
-				WHERE alunos_turmas.id_aluno = :id";
-
+	public function listAllActivefromProfessor($id) {
+		$sql = "SELECT * FROM turmas t, professores p, usuarios u, calendarios_academicos ca, disciplinas d WHERE t.id_professor = p.id_professor AND p.id_usuario = u.id_usuario AND t.id_calendario = ca.id_calendario AND t.id_disciplina = d.id_disciplina AND t.id_professor = :id AND t.situacao_turma = 1";		
 		$stmt = DB::prepare($sql);
 		$stmt->bindParam(":id", $id);
 		$stmt->execute();

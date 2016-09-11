@@ -151,6 +151,11 @@ include_once 'header.php';
       <div class="form-group col-md-12">
         <button type="submit" class="btn btn-primary" onclick="inseriCamposHorario()">Inserir mais um horário</button>
       </div>
+<<<<<<< HEAD
+      <div class="form-group col-md-1">
+        <label for="vagas"> </label>
+        <button type="submit" id="setHoras" class="btn btn-primary">Inserir</button>
+=======
     </div>  
 
 
@@ -177,6 +182,7 @@ include_once 'header.php';
             <input type="time" name="termino[]" class="form-control" id="termino">
           </div> 
         </div>
+>>>>>>> rf07
       </div>
 
 
@@ -189,16 +195,14 @@ include_once 'header.php';
     </div>
 
 
-    <hr />
-	  <div class="col-md-12">
-	  	<button type="submit" class="btn btn-primary">Salvar</button>
-		<a href="template.html" class="btn btn-default">Cancelar</a>
-	  </div>
-
-
   </form>
 </div> <!-- /container -->
 
 <?php
 include_once 'footer.php';
 ?>
+
+
+<script>
+
+</script>
