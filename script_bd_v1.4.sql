@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 11-Set-2016 às 00:38
+-- Generation Time: 12-Set-2016 às 01:06
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -132,7 +132,7 @@ CREATE TABLE IF NOT EXISTS `calendarios_academicos` (
   `data_inicio_pl` datetime DEFAULT NULL,
   `data_fim_pl` datetime DEFAULT NULL,
   `data_fim_ca` datetime DEFAULT NULL,
-  `situacao` tinyint(1) NOT NULL,
+  `situacao_calendario` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_calendario`),
   UNIQUE KEY `IdCalendario_UNIQUE` (`id_calendario`),
   UNIQUE KEY `Identifcador_UNIQUE` (`identificador`)
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `calendarios_academicos` (
 -- Extraindo dados da tabela `calendarios_academicos`
 --
 
-INSERT INTO `calendarios_academicos` (`id_calendario`, `identificador`, `duracao`, `data_inicio_ca`, `data_inicio_pm`, `data_fim_pm`, `data_inicio_pl`, `data_fim_pl`, `data_fim_ca`, `situacao`) VALUES
+INSERT INTO `calendarios_academicos` (`id_calendario`, `identificador`, `duracao`, `data_inicio_ca`, `data_inicio_pm`, `data_fim_pm`, `data_inicio_pl`, `data_fim_pl`, `data_fim_ca`, `situacao_calendario`) VALUES
 (1, '20161', 101, '2016-07-04 00:00:00', '2016-07-04 00:00:00', '2016-07-04 00:00:00', '2016-07-04 00:00:00', '2016-07-04 00:00:00', '2016-07-04 00:00:00', 1);
 
 -- --------------------------------------------------------
@@ -301,7 +301,7 @@ INSERT INTO `resultados_avaliacoes` (`id_avaliacao`, `id_aluno`, `nota`) VALUES
 CREATE TABLE IF NOT EXISTS `turmas` (
   `id_turma` int(11) NOT NULL AUTO_INCREMENT,
   `num_vagas` int(11) NOT NULL,
-  `situacao` tinyint(1) NOT NULL,
+  `situacao_turma` tinyint(1) NOT NULL,
   `id_disciplina` int(11) NOT NULL,
   `id_calendario` int(11) NOT NULL,
   `id_professor` int(11) NOT NULL,
@@ -310,13 +310,13 @@ CREATE TABLE IF NOT EXISTS `turmas` (
   KEY `fk_Truma_Disciplina1_idx` (`id_disciplina`),
   KEY `fk_Truma_CalendarioAcademico1_idx` (`id_calendario`),
   KEY `fk_Truma_Professor1_idx` (`id_professor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Extraindo dados da tabela `turmas`
 --
 
-INSERT INTO `turmas` (`id_turma`, `num_vagas`, `situacao`, `id_disciplina`, `id_calendario`, `id_professor`) VALUES
+INSERT INTO `turmas` (`id_turma`, `num_vagas`, `situacao_turma`, `id_disciplina`, `id_calendario`, `id_professor`) VALUES
 (1, 50, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
@@ -337,6 +337,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `login` varchar(50) NOT NULL,
   `senha` varchar(100) NOT NULL,
   `ativado` tinyint(1) NOT NULL,
+  `sexo` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `login` (`login`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
@@ -345,12 +346,12 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `nome`, `data_nascimento`, `cpf`, `identidade`, `email`, `endereco`, `telefone`, `login`, `senha`, `ativado`) VALUES
-(1, 'Felipe Negrelli Martins', '1985-07-02', '12312312312', '1212123', 'felipenegrelli@gmail.com', NULL, '27981512106', 'felipe_negrelli', '81dc9bdb52d04dc20036dbd8313ed055', 1),
-(2, 'Celio Maioli', '1970-01-01', '11111111111', '1212123', 'cpmaioli@gmail.com', 'rua', NULL, 'celio', '81dc9bdb52d04dc20036dbd8313ed055', 1),
-(3, 'Flavio Giraldelli', '1979-01-01', '12312312312', '1212123', 'giraldelli@ifes.edu.br', 'rua', NULL, 'giraldelli', '81dc9bdb52d04dc20036dbd8313ed055', 1),
-(4, 'Vivian Betzel', '1993-01-02', '12312312312', '1212123', 'vivian@outlook.com', 'Rua', '27999999999', 'vivian', '81dc9bdb52d04dc20036dbd8313ed055', 1),
-(5, 'Raone Dornedoni', '2016-09-05', '12312312312', '1212123', 'raone@gmail.com', 'Rua', '27999999999', 'raone', '81dc9bdb52d04dc20036dbd8313ed055', 1);
+INSERT INTO `usuarios` (`id_usuario`, `nome`, `data_nascimento`, `cpf`, `identidade`, `email`, `endereco`, `telefone`, `login`, `senha`, `ativado`, `sexo`) VALUES
+(1, 'Felipe Negrelli Martins', '1985-07-02', '12312312312', '1212123', 'felipenegrelli@gmail.com', NULL, '27981512106', 'felipe_negrelli', '81dc9bdb52d04dc20036dbd8313ed055', 1, 'M'),
+(2, 'Celio Maioli', '1970-01-01', '11111111111', '1212123', 'cpmaioli@gmail.com', 'rua', NULL, 'celio', '81dc9bdb52d04dc20036dbd8313ed055', 1, 'M'),
+(3, 'Flavio Giraldelli', '1979-01-01', '12312312312', '1212123', 'giraldelli@ifes.edu.br', 'rua', NULL, 'giraldelli', '81dc9bdb52d04dc20036dbd8313ed055', 1, 'M'),
+(4, 'Vivian Betzel', '1993-01-02', '12312312312', '1212123', 'vivian@outlook.com', 'Rua', '27999999999', 'vivian', '81dc9bdb52d04dc20036dbd8313ed055', 1, 'F'),
+(5, 'Raone Dornedoni', '2016-09-05', '12312312312', '1212123', 'raone@gmail.com', 'Rua', '27999999999', 'raone', '81dc9bdb52d04dc20036dbd8313ed055', 1, 'M');
 
 --
 -- Constraints for dumped tables

@@ -179,7 +179,6 @@ include_once 'header.php';
         </div>
       </div>
 
-
     <br />
     <div class="row">
   	  <div class="col-md-12">
@@ -187,14 +186,6 @@ include_once 'header.php';
   		<a href="PagExibirTurmas.php?id_disciplina=<?php echo $idDisciplina ?>" class="btn btn-default">Cancelar</a>
   	  </div>
     </div>
-
-
-    <hr />
-	  <div class="col-md-12">
-	  	<button type="submit" class="btn btn-primary">Salvar</button>
-		<a href="template.html" class="btn btn-default">Cancelar</a>
-	  </div>
-
 
   </form>
 </div> <!-- /container -->
