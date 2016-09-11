@@ -54,7 +54,7 @@ $listaCursos = $cursoController->listaCursos();
 						<a class="btn btn-danger btn-xs"  href="#" data-toggle="modal" data-target="#delete-modal">Excluir</a>';
 					echo '</td>';
 					echo '<td class="actions text-center">
-						<a class="btn btn-info btn-xs" href="PagInserirDisciplina.php?id_curso='.$row['id_curso'].'">Inserir Disciplina</a>';
+						<a class="btn btn-info btn-xs" href="PagExibirDisciplinas.php?id_curso='.$row['id_curso'].'">Disciplinas</a>';
 					echo '</td>';
 				echo '</tr>';
 			}

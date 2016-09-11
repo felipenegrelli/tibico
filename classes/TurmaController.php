@@ -1,8 +1,9 @@
 <?php
 include_once 'Turma.php';
 include_once 'TurmaDAO.php';
-include_once 'CalendarioAcademico.php';
+include_once 'Calendario.php';
 include_once 'Professor.php';
+include_once 'Disciplina.php';
 
 class TurmaController{
 
@@ -20,11 +21,12 @@ class TurmaController{
 		$professor->setId($idProfessor);
 
 		$disciplina = new Disciplina();
-		$disciplina->setId($idProfessor);
+		$disciplina->setId($idDisciplina);
 
 		$turma = new Turma();
 		$turma->setNumVagas($numVagas);
-		$turma->setCalendario($disciplina);
+		$turma->setCalendario($calendario);
+		$turma->setDisciplina($disciplina);
 		$turma->setProfessor($professor);
 		$turma->setNumVagas($numVagas);
 		$turma->setSituacao($situacao);
@@ -50,6 +52,13 @@ class TurmaController{
 	public function listaTurmasProfessor($id){
 		$turmaDAO = new TurmaDAO();
 		$lista = $turmaDAO->listAllfromProfessor($id);
+
+		return $lista;
+	}
+
+	public function listaTurmasDisciplina($id){
+		$turmaDAO = new TurmaDAO();
+		$lista = $turmaDAO->listClassesFromSubject($id);
 
 		return $lista;
 	}

@@ -29,6 +29,7 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -146,31 +147,7 @@ desired effect
           </ul>
         </li>
 
-        <li class="treeview">
-          <a href="#"><i class="fa fa-user"></i> <span>Cursos</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="PagCadastrarCurso.php">Adicionar Novo Curso</a></li>
-            <li><a href="PagExibirCursos.php">Todos os Cursos</a></li>
-          </ul>
-        </li>
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-user"></i> <span>Disciplinas</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="PagCadastrarDisciplina.php">Adicionar Novo Disciplina</a></li>
-            <li><a href="PagExibirDisciplinas.php">Todos as Discplinas</a></li>
-          </ul>
-        </li>
-
-        <li><a href="PagExibirTurmas.php"><i class="fa fa-link"></i> <span>Turmas</span></a></li>
+        <li><a href="PagExibirCursos.php"><i class="fa fa-link"></i> <span>Cursos</span></a></li>
         
       </ul>
       <!-- /.sidebar-menu -->

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 08-Set-2016 às 16:28
+-- Generation Time: 11-Set-2016 às 00:38
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -37,7 +37,16 @@ CREATE TABLE IF NOT EXISTS `alunos` (
   UNIQUE KEY `IdAluno_UNIQUE` (`id_aluno`),
   UNIQUE KEY `Matricula_UNIQUE` (`matricula`),
   KEY `fk_Aluno_Usuario_idx` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Extraindo dados da tabela `alunos`
+--
+
+INSERT INTO `alunos` (`id_aluno`, `matricula`, `nome_pai`, `nome_mae`, `situacao`, `id_usuario`) VALUES
+(1, '20161bsi0001', 'Pai', 'Mae', 1, 1),
+(2, '20161bsi0002', 'Pai', 'Mae', 1, 4),
+(3, '20161BSI0003', 'Pai', 'Mae', 1, 5);
 
 -- --------------------------------------------------------
 
@@ -47,13 +56,22 @@ CREATE TABLE IF NOT EXISTS `alunos` (
 
 CREATE TABLE IF NOT EXISTS `alunos_turmas` (
   `id_aluno` int(11) NOT NULL AUTO_INCREMENT,
-  `is_turma` int(11) NOT NULL,
+  `id_turma` int(11) NOT NULL,
   `frquencia_final` int(11) DEFAULT NULL,
   `nota_final` int(11) DEFAULT NULL,
   `situacao_aprovacao` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id_aluno`,`is_turma`),
-  KEY `fk_AlunoTurma_Turma1_idx` (`is_turma`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id_aluno`,`id_turma`),
+  KEY `fk_AlunoTurma_Turma1_idx` (`id_turma`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Extraindo dados da tabela `alunos_turmas`
+--
+
+INSERT INTO `alunos_turmas` (`id_aluno`, `id_turma`, `frquencia_final`, `nota_final`, `situacao_aprovacao`) VALUES
+(1, 1, NULL, NULL, NULL),
+(2, 1, NULL, NULL, NULL),
+(3, 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -70,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `aulas` (
   PRIMARY KEY (`id_aula`),
   UNIQUE KEY `IdAula_UNIQUE` (`id_aula`),
   KEY `fk_Aula_Turma1_idx` (`id_turma`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -87,14 +105,16 @@ CREATE TABLE IF NOT EXISTS `avaliacoes` (
   `id_turma` int(11) NOT NULL,
   PRIMARY KEY (`id_avaliacao`),
   KEY `fk_Avaliacao_Turma1_idx` (`id_turma`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Extraindo dados da tabela `avaliacoes`
 --
 
 INSERT INTO `avaliacoes` (`id_avaliacao`, `tipo_avaliacao`, `peso`, `data`, `descricao`, `id_turma`) VALUES
-(1, 'PROVA', '1', '2016-09-07 00:00:00', 'Prova 1', 1);
+(1, 'Prova', '1', '2016-09-07 00:00:00', 'Prova 1', 1),
+(4, 'Trabalho', '2', '2016-09-10 00:00:00', 'Trabalho 1', 1),
+(6, 'Prova', '1', '2016-09-15 00:00:00', 'Prova 2', 1);
 
 -- --------------------------------------------------------
 
@@ -116,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `calendarios_academicos` (
   PRIMARY KEY (`id_calendario`),
   UNIQUE KEY `IdCalendario_UNIQUE` (`id_calendario`),
   UNIQUE KEY `Identifcador_UNIQUE` (`identificador`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Extraindo dados da tabela `calendarios_academicos`
@@ -142,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `cursos` (
   `grau_instrucao` varchar(30) NOT NULL,
   PRIMARY KEY (`id_curso`),
   UNIQUE KEY `IdCurso_UNIQUE` (`id_curso`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Extraindo dados da tabela `cursos`
@@ -167,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `disciplinas` (
   PRIMARY KEY (`id_disciplina`),
   UNIQUE KEY `IdDisciplina_UNIQUE` (`id_disciplina`),
   KEY `fk_Disciplina_Curso1_idx` (`id_curso`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Extraindo dados da tabela `disciplinas`
@@ -204,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `horarios` (
   `id_turma` int(11) NOT NULL,
   PRIMARY KEY (`id_horario`),
   KEY `fk_Horario_Truma1_idx` (`id_turma`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -233,7 +253,7 @@ CREATE TABLE IF NOT EXISTS `professores` (
   PRIMARY KEY (`id_professor`),
   UNIQUE KEY `IdProfessor_UNIQUE` (`id_professor`),
   KEY `fk_Professor_Usuario1_idx` (`id_usuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Extraindo dados da tabela `professores`
@@ -255,7 +275,22 @@ CREATE TABLE IF NOT EXISTS `resultados_avaliacoes` (
   `nota` decimal(10,0) NOT NULL,
   PRIMARY KEY (`id_avaliacao`,`id_aluno`),
   KEY `fk_ResultadoAvaliacao_Aluno1_idx` (`id_aluno`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Extraindo dados da tabela `resultados_avaliacoes`
+--
+
+INSERT INTO `resultados_avaliacoes` (`id_avaliacao`, `id_aluno`, `nota`) VALUES
+(1, 1, '10'),
+(1, 2, '20'),
+(1, 3, '30'),
+(4, 1, '90'),
+(4, 2, '80'),
+(4, 3, '70'),
+(6, 1, '7'),
+(6, 2, '9'),
+(6, 3, '8');
 
 -- --------------------------------------------------------
 
@@ -275,7 +310,7 @@ CREATE TABLE IF NOT EXISTS `turmas` (
   KEY `fk_Truma_Disciplina1_idx` (`id_disciplina`),
   KEY `fk_Truma_CalendarioAcademico1_idx` (`id_calendario`),
   KEY `fk_Truma_Professor1_idx` (`id_professor`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Extraindo dados da tabela `turmas`
@@ -304,7 +339,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `ativado` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `login` (`login`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Extraindo dados da tabela `usuarios`
@@ -313,7 +348,9 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 INSERT INTO `usuarios` (`id_usuario`, `nome`, `data_nascimento`, `cpf`, `identidade`, `email`, `endereco`, `telefone`, `login`, `senha`, `ativado`) VALUES
 (1, 'Felipe Negrelli Martins', '1985-07-02', '12312312312', '1212123', 'felipenegrelli@gmail.com', NULL, '27981512106', 'felipe_negrelli', '81dc9bdb52d04dc20036dbd8313ed055', 1),
 (2, 'Celio Maioli', '1970-01-01', '11111111111', '1212123', 'cpmaioli@gmail.com', 'rua', NULL, 'celio', '81dc9bdb52d04dc20036dbd8313ed055', 1),
-(3, 'Flavio Giraldelli', '1979-01-01', '12312312312', '1212123', 'giraldelli@ifes.edu.br', 'rua', NULL, 'giraldelli', '81dc9bdb52d04dc20036dbd8313ed055', 1);
+(3, 'Flavio Giraldelli', '1979-01-01', '12312312312', '1212123', 'giraldelli@ifes.edu.br', 'rua', NULL, 'giraldelli', '81dc9bdb52d04dc20036dbd8313ed055', 1),
+(4, 'Vivian Betzel', '1993-01-02', '12312312312', '1212123', 'vivian@outlook.com', 'Rua', '27999999999', 'vivian', '81dc9bdb52d04dc20036dbd8313ed055', 1),
+(5, 'Raone Dornedoni', '2016-09-05', '12312312312', '1212123', 'raone@gmail.com', 'Rua', '27999999999', 'raone', '81dc9bdb52d04dc20036dbd8313ed055', 1);
 
 --
 -- Constraints for dumped tables
@@ -330,7 +367,7 @@ ALTER TABLE `alunos`
 --
 ALTER TABLE `alunos_turmas`
   ADD CONSTRAINT `fk_AlunoTurma_Aluno1` FOREIGN KEY (`id_aluno`) REFERENCES `alunos` (`id_aluno`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_AlunoTurma_Turma1` FOREIGN KEY (`is_turma`) REFERENCES `turmas` (`id_turma`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_AlunoTurma_Turma1` FOREIGN KEY (`id_turma`) REFERENCES `turmas` (`id_turma`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Limitadores para a tabela `aulas`

@@ -4,15 +4,17 @@ $page_title = "Exibir Turmas";
 include_once 'header.php';
 include_once 'classes/TurmaController.php';
 
+$idDisciplina = $_GET["id_disciplina"];
+
 $turmaController = new TurmaController();
-$listaTurmas = $turmaController->listaTurmas();
+$listaTurmas = $turmaController->listaTurmasDisciplina($idDisciplina);
 ?>
 
  	<div id="top" class="row">
  		<div class="col-sm-6">
 			<a href="pagCadastrarTurma.php" class="btn btn-primary pull-left h2">Nova Turma</a>
 		</div>
-		<div class="col-sm-6">			
+		<div class="col-sm-6">
 			<div class="input-group h2">
 				<input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Itens">
 				<span class="input-group-btn">
@@ -20,7 +22,7 @@ $listaTurmas = $turmaController->listaTurmas();
 						<span class="glyphicon glyphicon-search"></span>
 					</button>
 				</span>
-			</div>			
+			</div>
 		</div>		
 	</div> <!-- /#top -->
  
@@ -38,7 +40,6 @@ $listaTurmas = $turmaController->listaTurmas();
 					<th class="col-sm-1">Vagas</th>
 					<th class="col-sm-1">Status</th>
 					<th class="actions col-sm-2">Ações</th>
-					<th class="actions col-sm-3">Outros</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -52,13 +53,8 @@ $listaTurmas = $turmaController->listaTurmas();
 					echo '<td class="text-center">'.$row['num_vagas'].'</td>';
 					echo '<td class="text-center">'.$row['situacao'].'</td>';
 					echo '<td class="actions text-center">';
-						echo '<a class="btn btn-success btn-xs" href="view.html">Visualizar</a>';
-						echo '<a class="btn btn-warning btn-xs" href="edit.html">Editar</a>';
+						echo '<a class="btn btn-warning btn-xs" href="PagCadastrarTurma?id_disciplina='.$idDisciplina.'&id_turma='.$row['id_turma'].'">Editar</a>';
 						echo '<a class="btn btn-danger btn-xs"  href="#" data-toggle="modal" data-target="#delete-modal">Excluir</a>';
-					echo '</td>';
-					echo '<td class="actions text-center">';
-						echo '<a class="btn btn-info btn-xs" href="view.html">Avaliação</a>';
-						echo '<a class="btn btn-info btn-xs" href="edit.html">Chamada</a>';
 					echo '</td>';
 				echo '</tr>';
 			}

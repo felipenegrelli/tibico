@@ -35,18 +35,28 @@ class TurmaDAO extends DB implements IDAO {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-
-	
-	 
+	public function listClassesFromSubject($idDisciplina) {
+		$sql = "SELECT * FROM turmas t, professores p, usuarios u, calendarios_academicos ca, disciplinas d WHERE t.id_professor = p.id_professor AND p.id_usuario = u.id_usuario AND t.id_calendario = ca.id_calendario AND t.id_disciplina = d.id_disciplina AND t.id_disciplina = :id";		
+		$stmt = DB::prepare($sql);
+		$stmt->bindParam(":id", $idDisciplina);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}	 
 	 
 	public function insert($turma) {
+		$numVagas = $turma->getNumVagas();
+		$situacao = $turma->getSituacao();
+		$idDisciplina = $turma->getDisciplina()->getId();
+		$idCalendario = $turma->getCalendario()->getId();
+		$idProfessor = $turma->getProfessor()->getId();
+
 		$sql = "INSERT INTO turmas (num_vagas, situacao, id_disciplina, id_calendario, id_professor) VALUES (:num_vagas, :situacao, :id_disciplina, :id_calendario, :id_professor)";
 	    $stmt = DB::prepare($sql);
-	    $stmt->bindParam(":num_vagas", $turma->getNumVagas());
-	    $stmt->bindParam(":situacao", $turma->getSituacao());
-	    $stmt->bindParam(":id_disciplina", $turma->getDisciplina()->getId());
-	    $stmt->bindParam(":id_calendario", $turma->getCalendario()->getId());
-	    $stmt->bindParam(":id_professor", $turma->getProfessor()->getId());
+	    $stmt->bindParam(":num_vagas", $numVagas);
+	    $stmt->bindParam(":situacao", $situacao);
+	    $stmt->bindParam(":id_disciplina", $idDisciplina);
+	    $stmt->bindParam(":id_calendario", $idCalendario);
+	    $stmt->bindParam(":id_professor", $idProfessor);
 
 	    $stmt->execute();
 	}

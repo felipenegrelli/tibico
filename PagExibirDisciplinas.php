@@ -53,7 +53,7 @@ $listaDisciplinas = $disciplinaController->listaDisciplinas();
 						<a class="btn btn-danger btn-xs"  href="#" data-toggle="modal" data-target="#delete-modal">Excluir</a>';
 					echo '</td>';
 					echo '<td class="actions text-center">
-						<a class="btn btn-info btn-xs" href="PagCadastrarTurma.php?id_disciplina='.$row['id_disciplina'].'">Inserir Turma</a>';
+						<a class="btn btn-info btn-xs" href="PagExibirTurmas.php?id_disciplina='.$row['id_disciplina'].'">Turmas</a>';
 					echo '</td>';
 				echo '</tr>';
 			}

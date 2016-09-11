@@ -33,7 +33,6 @@ else if(isset($_GET["id_avaliacao"])){
 }
 
 $page_title = "Cadastrar Avaliação";
-
 include_once 'header.php'; 
 ?>
 
