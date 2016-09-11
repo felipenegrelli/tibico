@@ -27,6 +27,14 @@ class TurmaDAO extends DB implements IDAO {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+	public function listAllActivefromProfessor($id) {
+		$sql = "SELECT * FROM turmas t, professores p, usuarios u, calendarios_academicos ca, disciplinas d WHERE t.id_professor = p.id_professor AND p.id_usuario = u.id_usuario AND t.id_calendario = ca.id_calendario AND t.id_disciplina = d.id_disciplina AND t.id_professor = :id AND t.situacao_turma = 1";		
+		$stmt = DB::prepare($sql);
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
 	public function listStudentsFromClass($idTurma) {
 		$sql = "SELECT * FROM alunos_turmas at, alunos a, usuarios u WHERE at.id_aluno = a.id_aluno AND a.id_usuario = u.id_usuario AND at.id_turma = :id_turma";		
 		$stmt = DB::prepare($sql);
@@ -44,13 +52,14 @@ class TurmaDAO extends DB implements IDAO {
 	}	 
 	 
 	public function insert($turma) {
+
 		$numVagas = $turma->getNumVagas();
 		$situacao = $turma->getSituacao();
 		$idDisciplina = $turma->getDisciplina()->getId();
 		$idCalendario = $turma->getCalendario()->getId();
 		$idProfessor = $turma->getProfessor()->getId();
 
-		$sql = "INSERT INTO turmas (num_vagas, situacao, id_disciplina, id_calendario, id_professor) VALUES (:num_vagas, :situacao, :id_disciplina, :id_calendario, :id_professor)";
+		$sql = "INSERT INTO turmas (num_vagas, situacao_turma, id_disciplina, id_calendario, id_professor) VALUES (:num_vagas, :situacao, :id_disciplina, :id_calendario, :id_professor)";
 	    $stmt = DB::prepare($sql);
 	    $stmt->bindParam(":num_vagas", $numVagas);
 	    $stmt->bindParam(":situacao", $situacao);
@@ -62,15 +71,23 @@ class TurmaDAO extends DB implements IDAO {
 	}
 
 	public function update($turma) {
-		$sql = "UPDATE turmas SET num_vagas = :num_vagas, situacao = :situacao, id_disciplina = :id_disciplina, id_calendario = :id_calendario, id_professor = :id_professor WHERE id_turma = :id_turma";
-		$stmt = DB::prepare($sql);
-		$stmt->bindParam(":num_vagas", $turma->getNumVagas());
-	    $stmt->bindParam(":situacao", $turma->getSituacao());
-	    $stmt->bindParam(":id_disciplina", $turma->getDisciplina()->getId());
-	    $stmt->bindParam(":id_calendario", $turma->getCalendario()->getId());
-	    $stmt->bindParam(":id_professor", $turma->getProfessor()->getId());
-	    $stmt->bindParam(":id_turma", $turma->getId());
 
+		$idTurma = $turma->getId();
+		$numVagas = $turma->getNumVagas();
+		$situacao = $turma->getSituacao();
+		$idDisciplina = $turma->getDisciplina()->getId();
+		$idCalendario = $turma->getCalendario()->getId();
+		$idProfessor = $turma->getProfessor()->getId();
+
+		$sql = "UPDATE turmas SET num_vagas = :num_vagas, situacao_turma = :situacao, id_disciplina = :id_disciplina, id_calendario = :id_calendario, id_professor = :id_professor WHERE id_turma = :id_turma";
+
+		$stmt = DB::prepare($sql);
+		$stmt->bindParam(":num_vagas", $numVagas);
+	    $stmt->bindParam(":situacao", $situacao);
+	    $stmt->bindParam(":id_disciplina", $idDisciplina);
+	    $stmt->bindParam(":id_calendario", $idCalendario);
+	    $stmt->bindParam(":id_professor", $idProfessor);
+	    $stmt->bindParam(":id_turma", $idTurma);
 
 		$stmt->execute();
 	}

@@ -13,7 +13,7 @@ if(!empty($_GET["id_avaliacao"]) & !empty($_GET["op"])){
 	}
 }
 $turmaController = new TurmaController();
-$turma = $turmaController->listaTurmasPorId($idTurma);
+$turma = $turmaController->pegaTurmaPorId($idTurma);
 
 $page_title = "Avaliações - ".$turma["nome_disciplina"]." - ".$turma["identificador"];
 include_once 'header.php';

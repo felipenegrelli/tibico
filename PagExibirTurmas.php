@@ -12,7 +12,7 @@ $listaTurmas = $turmaController->listaTurmasDisciplina($idDisciplina);
 
  	<div id="top" class="row">
  		<div class="col-sm-6">
-			<a href="pagCadastrarTurma.php" class="btn btn-primary pull-left h2">Nova Turma</a>
+			<a href="pagCadastrarTurma.php?id_disciplina=<?php echo $idDisciplina; ?>" class="btn btn-primary pull-left h2">Nova Turma</a>
 		</div>
 		<div class="col-sm-6">
 			<div class="input-group h2">
@@ -51,9 +51,16 @@ $listaTurmas = $turmaController->listaTurmasDisciplina($idDisciplina);
 					echo '<td class="text-center">'.$row['identificador'].'</td>';
 					echo '<td class="text-center">'.$row['nome'].'</td>';
 					echo '<td class="text-center">'.$row['num_vagas'].'</td>';
-					echo '<td class="text-center">'.$row['situacao'].'</td>';
+
+					if($row['situacao_turma'] == 1){
+						echo '<td class="text-center">Ativo</td>';
+					}
+					else{
+						echo '<td class="text-center">Inativo</td>';
+					}
+					
 					echo '<td class="actions text-center">';
-						echo '<a class="btn btn-warning btn-xs" href="PagCadastrarTurma?id_disciplina='.$idDisciplina.'&id_turma='.$row['id_turma'].'">Editar</a>';
+						echo '<a class="btn btn-warning btn-xs" href="PagCadastrarTurma.php?id_disciplina='.$idDisciplina.'&id_turma='.$row['id_turma'].'">Editar</a>';
 						echo '<a class="btn btn-danger btn-xs"  href="#" data-toggle="modal" data-target="#delete-modal">Excluir</a>';
 					echo '</td>';
 				echo '</tr>';

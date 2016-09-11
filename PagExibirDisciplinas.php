@@ -10,7 +10,7 @@ $listaDisciplinas = $disciplinaController->listaDisciplinas();
 ?>
  	<div id="top" class="row">
  		<div class="col-sm-6">
-			<a href="PagCadastrarCurso.php" class="btn btn-primary pull-left h2">Novo Curso</a>
+			<a href="PagCadastrarDisciplina.php?id_" class="btn btn-primary pull-left h2">Novo Disciplina</a>
 		</div>
 		<div class="col-sm-6">			
 			<div class="input-group h2">
@@ -63,18 +63,6 @@ $listaDisciplinas = $disciplinaController->listaDisciplinas();
 	</div>
 	
 	</div> <!-- /#list -->
-	
-	<div id="bottom" class="row">
-		<div class="col-md-12">
-			<ul class="pagination">
-				<li class="disabled"><a>&lt; Anterior</a></li>
-				<li class="disabled"><a>1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li class="next"><a href="#" rel="next">Próximo &gt;</a></li>
-			</ul><!-- /.pagination -->
-		</div>
-	</div> <!-- /#bottom -->
 
 <!-- Modal -->
 <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
