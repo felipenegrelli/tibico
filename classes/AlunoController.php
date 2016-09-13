@@ -29,6 +29,13 @@ class AlunoController{
 		$lista = $alunoDAO->listAll();
 
 		return $lista;
+	}	
+
+	public function listaAlunosPorTurma($id){
+		$alunoDAO = new AlunoDAO();
+		$lista = $alunoDAO->listAllFromTurma($id);
+
+		return $lista;
 	}
 }
 ?>

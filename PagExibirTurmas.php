@@ -52,7 +52,7 @@ $listaTurmas = $turmaController->listaTurmasDisciplina($idDisciplina);
 					echo '<td class="text-center">'.$row['nome'].'</td>';
 					echo '<td class="text-center">'.$row['num_vagas'].'</td>';
 
-					if($row['situacao_turma'] == 1){
+					if($row['situacao'] == 1){
 						echo '<td class="text-center">Ativo</td>';
 					}
 					else{

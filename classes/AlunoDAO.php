@@ -19,6 +19,24 @@ class AlunoDAO extends DB implements IDAO {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
+	public function listAllFromTurma($id) {
+		$sql = "SELECT usuarios.nome, alunos_turmas.id_aluno
+
+				FROM turmas
+
+				LEFT JOIN alunos_turmas ON alunos_turmas.id_turma = turmas.id_turma
+				LEFT JOIN alunos ON alunos.id_aluno = alunos_turmas.id_aluno
+				LEFT JOIN usuarios on usuarios.id_usuario = alunos.id_usuario
+
+				WHERE turmas.id_turma = :id
+				ORDER BY usuarios.nome";
+
+		$stmt = DB::prepare($sql);
+		$stmt->bindParam(":id", $id);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
 	public function findByUserId($id) {
 		$sql = "SELECT * FROM alunos WHERE id_usuario = :id";
 		$stmt = DB::prepare($sql);
