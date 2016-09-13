@@ -82,5 +82,15 @@ class CalendarioDAO extends DB implements IDAO {
 
 		$stmt->execute();
 	}
+
+	public function closeCalendar($idCalendario) {
+		$sql = "UPDATE calendarios_academicos
+				SET situacao_calendario = 0
+				WHERE id_calendario = :id";
+		$stmt = DB::prepare($sql);
+		$stmt->bindParam(":id",$idCalendario, PDO::PARAM_INT);
+
+		$stmt->execute();
+	}
 }
 ?>

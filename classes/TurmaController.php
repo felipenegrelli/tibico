@@ -66,11 +66,32 @@ class TurmaController{
 		return $lista;
 	}
 
+	public function listaTurmasAbertas($idCalendario){
+		$turmaDAO = new TurmaDAO();
+		$lista = $turmaDAO->listOpen($idCalendario);
+
+		return $lista;
+	}
+
 	public function pegaTurmaPorId($id){
 		$turmaDAO = new TurmaDAO();
 		$turma = $turmaDAO->findById($id);
 
 		return $turma;
+	}
+
+	public function pegaFaltasAluno($idTurma, $idAluno){
+		$turmaDAO = new TurmaDAO();
+		$faltas = $turmaDAO->getAbsensesFromStudent($idTurma, $idAluno);
+
+		return $faltas;
+	}
+
+	public function pegaQuantAulasTurma($idTurma){
+		$turmaDAO = new TurmaDAO();
+		$quant = $turmaDAO->getNumberClassDays($idTurma);
+
+		return $quant;
 	}
 
 	public function listaTurmasProfessor($id){
@@ -106,6 +127,16 @@ class TurmaController{
 		$listaAlunos = $turmaDAO->listAllFromStudent($idTurma);
 
 		return $listaAlunos;
+	}
+
+	public function atualizaResultadoAluno($idTurma, $idAluno, $faltas, $nota_final, $situacao_aprovacao){
+		$turmaDAO = new TurmaDAO();
+		$turmaDAO->updateStudentResults($idTurma, $idAluno, $faltas, $nota_final, $situacao_aprovacao);
+	}
+
+	public function atualizaStatusTurma($idTurma, $status){
+		$turmaDAO = new TurmaDAO();
+		$turmaDAO->updateStatus($idTurma, $status);
 	}
 }
 ?>
