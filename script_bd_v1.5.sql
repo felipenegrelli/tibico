@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 12-Set-2016 às 01:06
+-- Generation Time: 14-Set-2016 às 02:19
 -- Versão do servidor: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -57,7 +57,7 @@ INSERT INTO `alunos` (`id_aluno`, `matricula`, `nome_pai`, `nome_mae`, `situacao
 CREATE TABLE IF NOT EXISTS `alunos_turmas` (
   `id_aluno` int(11) NOT NULL AUTO_INCREMENT,
   `id_turma` int(11) NOT NULL,
-  `frquencia_final` int(11) DEFAULT NULL,
+  `frequencia_final` int(11) DEFAULT NULL,
   `nota_final` int(11) DEFAULT NULL,
   `situacao_aprovacao` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_aluno`,`id_turma`),
@@ -68,10 +68,10 @@ CREATE TABLE IF NOT EXISTS `alunos_turmas` (
 -- Extraindo dados da tabela `alunos_turmas`
 --
 
-INSERT INTO `alunos_turmas` (`id_aluno`, `id_turma`, `frquencia_final`, `nota_final`, `situacao_aprovacao`) VALUES
-(1, 1, NULL, NULL, NULL),
-(2, 1, NULL, NULL, NULL),
-(3, 1, NULL, NULL, NULL);
+INSERT INTO `alunos_turmas` (`id_aluno`, `id_turma`, `frequencia_final`, `nota_final`, `situacao_aprovacao`) VALUES
+(1, 1, 2, 90, 'REPROVADO_FALTA'),
+(2, 1, 0, 75, 'APROVADO'),
+(3, 1, 0, 32, 'REPROVADO_NOTA');
 
 -- --------------------------------------------------------
 
@@ -88,7 +88,16 @@ CREATE TABLE IF NOT EXISTS `aulas` (
   PRIMARY KEY (`id_aula`),
   UNIQUE KEY `IdAula_UNIQUE` (`id_aula`),
   KEY `fk_Aula_Turma1_idx` (`id_turma`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Extraindo dados da tabela `aulas`
+--
+
+INSERT INTO `aulas` (`id_aula`, `data`, `quantidade_aulas`, `conteudo`, `id_turma`) VALUES
+(1, '2016-09-05 00:00:00', 2, 'Teste', 1),
+(2, '2016-09-06 00:00:00', 2, 'Teste 2', 1),
+(3, '2016-09-07 00:00:00', 2, 'Teste 3', 1);
 
 -- --------------------------------------------------------
 
@@ -105,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `avaliacoes` (
   `id_turma` int(11) NOT NULL,
   PRIMARY KEY (`id_avaliacao`),
   KEY `fk_Avaliacao_Turma1_idx` (`id_turma`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Extraindo dados da tabela `avaliacoes`
@@ -114,7 +123,8 @@ CREATE TABLE IF NOT EXISTS `avaliacoes` (
 INSERT INTO `avaliacoes` (`id_avaliacao`, `tipo_avaliacao`, `peso`, `data`, `descricao`, `id_turma`) VALUES
 (1, 'Prova', '1', '2016-09-07 00:00:00', 'Prova 1', 1),
 (4, 'Trabalho', '2', '2016-09-10 00:00:00', 'Trabalho 1', 1),
-(6, 'Prova', '1', '2016-09-15 00:00:00', 'Prova 2', 1);
+(6, 'Prova', '1', '2016-09-15 00:00:00', 'Prova 2', 1),
+(7, 'Trabalho', '2', '2016-09-13 00:00:00', 'Trabalho 2', 1);
 
 -- --------------------------------------------------------
 
@@ -125,7 +135,7 @@ INSERT INTO `avaliacoes` (`id_avaliacao`, `tipo_avaliacao`, `peso`, `data`, `des
 CREATE TABLE IF NOT EXISTS `calendarios_academicos` (
   `id_calendario` int(11) NOT NULL AUTO_INCREMENT,
   `identificador` varchar(20) DEFAULT NULL,
-  `duracao` int(11) DEFAULT NULL,
+  `duracao` varchar(20) DEFAULT NULL,
   `data_inicio_ca` datetime DEFAULT NULL,
   `data_inicio_pm` datetime DEFAULT NULL,
   `data_fim_pm` datetime DEFAULT NULL,
@@ -143,7 +153,7 @@ CREATE TABLE IF NOT EXISTS `calendarios_academicos` (
 --
 
 INSERT INTO `calendarios_academicos` (`id_calendario`, `identificador`, `duracao`, `data_inicio_ca`, `data_inicio_pm`, `data_fim_pm`, `data_inicio_pl`, `data_fim_pl`, `data_fim_ca`, `situacao_calendario`) VALUES
-(1, '20161', 101, '2016-07-04 00:00:00', '2016-07-04 00:00:00', '2016-07-04 00:00:00', '2016-07-04 00:00:00', '2016-07-04 00:00:00', '2016-07-04 00:00:00', 1);
+(1, '20161', 'SEMESTRAL', '2016-02-08 00:00:00', '2016-07-04 00:00:00', '2016-07-04 00:00:00', '2016-07-04 00:00:00', '2016-07-04 00:00:00', '2016-07-01 00:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -210,6 +220,21 @@ CREATE TABLE IF NOT EXISTS `frequencias` (
   KEY `fk_Frequencia_Aluno1_idx` (`id_aluno`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Extraindo dados da tabela `frequencias`
+--
+
+INSERT INTO `frequencias` (`id_aula`, `id_aluno`, `num_faltas`) VALUES
+(1, 1, 0),
+(1, 2, 0),
+(1, 3, 0),
+(2, 1, 0),
+(2, 2, 0),
+(2, 3, 0),
+(3, 1, 2),
+(3, 2, 0),
+(3, 3, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -275,22 +300,25 @@ CREATE TABLE IF NOT EXISTS `resultados_avaliacoes` (
   `nota` decimal(10,0) NOT NULL,
   PRIMARY KEY (`id_avaliacao`,`id_aluno`),
   KEY `fk_ResultadoAvaliacao_Aluno1_idx` (`id_aluno`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Extraindo dados da tabela `resultados_avaliacoes`
 --
 
 INSERT INTO `resultados_avaliacoes` (`id_avaliacao`, `id_aluno`, `nota`) VALUES
-(1, 1, '10'),
-(1, 2, '20'),
+(1, 1, '90'),
+(1, 2, '80'),
 (1, 3, '30'),
 (4, 1, '90'),
 (4, 2, '80'),
 (4, 3, '70'),
-(6, 1, '7'),
-(6, 2, '9'),
-(6, 3, '8');
+(6, 1, '90'),
+(6, 2, '70'),
+(6, 3, '8'),
+(7, 1, '90'),
+(7, 2, '70'),
+(7, 3, '7');
 
 -- --------------------------------------------------------
 
@@ -310,7 +338,7 @@ CREATE TABLE IF NOT EXISTS `turmas` (
   KEY `fk_Truma_Disciplina1_idx` (`id_disciplina`),
   KEY `fk_Truma_CalendarioAcademico1_idx` (`id_calendario`),
   KEY `fk_Truma_Professor1_idx` (`id_professor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Extraindo dados da tabela `turmas`
