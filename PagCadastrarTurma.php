@@ -60,8 +60,6 @@ include_once 'header.php';
 		echo '<form action="PagCadastrarTurma.php?id_disciplina='.$idDisciplina.'" method="post">';
 	}
 	?>
-
-  <form action="PagCadastrarTurma.php?id_disciplina=<?php echo $idDisciplina?>" method="post">
     <div class="row">
       <div class="form-group col-md-6">
         <label for="calendario">Calendario</label>

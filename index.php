@@ -41,6 +41,7 @@ if(isset($_SESSION["id_usuario"])){
 							echo '<td class="actions text-center">';
 								echo '<a class="btn btn-info btn-xs" href="PagExibirAvaliacoes.php?id_turma='.$row['id_turma'].'">Avaliações</a>';
 								echo '<a class="btn btn-info btn-xs" href="PagExibirAulas.php?id_turma='.$row['id_turma'].'">Aulas</a>';
+								echo '<a class="btn btn-danger btn-xs" href="PagFecharTurma.php?id_turma='.$row['id_turma'].'">Fechar Turma</a>';
 							echo '</td>';
 						echo '</tr>';
 					}

@@ -16,5 +16,11 @@ class CalendarioController{
 		return $lista;
 	}
 
+
+	public function fechaCalendario($idCalendario){
+		$calendarioDAO = new CalendarioDAO();
+		$calendarioDAO->closeCalendar($idCalendario);
+	}
+
 }
 ?>
