@@ -84,7 +84,6 @@ include_once 'footer.php';
         var id = $(this).find('td[data-id]').data('id');
         var f = $('#faltas'+cont).val();
         $.post("classes/FrequenciaController.php",{ acao:'inserir', idAula:<?php echo $idAula ?>, faltas:f, idAluno:id}, function(result){
-          alert(result);
         });
         cont++;
       }

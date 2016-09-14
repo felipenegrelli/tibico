@@ -48,11 +48,13 @@ class FrequenciaDAO extends DB implements IDAO {
 	public function insert($frequencia) {
 		
 		$sql = "INSERT INTO frequencias (id_aula, id_aluno, num_faltas) VALUES (:id_aluno, :num_faltas, :id_aula)";
+		$sql = "INSERT INTO frequencias (id_aula, id_aluno, num_faltas) 
+								VALUES (:id_aula, :id_aluno, :num_faltas)";
 	    $stmt = DB::prepare($sql);
 	    $stmt->bindParam(":id_aula", $frequencia->idAula);
 	    $stmt->bindParam(":id_aluno", $frequencia->idAluno);
 	    $stmt->bindParam(":num_faltas", $frequencia->numFaltas);
-	    $stmt->execute();	    
+	    $stmt->execute();
 	}
 
 	public function update($aluno) {

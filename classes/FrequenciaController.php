@@ -15,7 +15,7 @@ include_once 'FrequenciaDAO.php';
 				$resultado = $frequenciaDAO->insert($frequencia);
 				break;
 		}
-
+		echo $resultado;
 	}
 
 	/*public function __construct()
