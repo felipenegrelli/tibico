@@ -5,6 +5,18 @@ include_once 'Calendario.php';
 include_once 'Professor.php';
 include_once 'Disciplina.php';
 
+if($_REQUEST){
+	$turmaDAO = new TurmaDAO();
+	$resultado = false;
+	switch ($_REQUEST['acao']) {
+		case 'inserir':
+			$resultado = $turmaDAO->insertInAlunoTurma($_REQUEST['aluno'],$_REQUEST['turma']);
+			break;
+	}
+	echo $resultado;
+}
+
+
 class TurmaController{
 
 	public function __construct()
@@ -138,5 +150,14 @@ class TurmaController{
 		$turmaDAO = new TurmaDAO();
 		$turmaDAO->updateStatus($idTurma, $status);
 	}
+
+	// UTILIZADO NA ETAPA DE MATRICULA
+	public function turmasAptasPorAluno($idAluno){
+		$turmaDAO = new TurmaDAO();
+		$listaTurmas = $turmaDAO->turmasParaMatricula($idAluno);
+		return $listaTurmas;
+	}
+
+
 }
 ?>

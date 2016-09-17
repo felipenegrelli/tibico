@@ -80,8 +80,8 @@ class TurmaDAO extends DB implements IDAO {
 	}
 
 	public function listAllFromStudent($id) {
-		$sql = "SELECT turmas.id_turma, disciplinas.nome_disciplina, calendarios_academicos.identificador,
-				usuarios.nome
+		$sql = "SELECT turmas.id_turma, disciplinas.nome_disciplina, calendarios_academicos.identificador as periodo,
+				usuarios.nome as nome_professor
 
 				from alunos_turmas
 
@@ -187,6 +187,19 @@ class TurmaDAO extends DB implements IDAO {
 	    $stmt->execute();
 	}
 
+	public function insertInAlunoTurma($idAluno, $idTurma) {
+
+		$sql = "INSERT INTO alunos_turmas 
+				(id_aluno, id_turma)
+				VALUES 
+				(:id_aluno, :id_turma)";
+
+	    $stmt = DB::prepare($sql);
+	    $stmt->bindParam(":id_aluno", $idAluno);
+	    $stmt->bindParam(":id_turma", $idTurma);
+	    $stmt->execute();
+	}
+
 	public function update($turma) {
 
 		$idTurma = $turma->getId();
@@ -256,6 +269,37 @@ class TurmaDAO extends DB implements IDAO {
 		$stmt->bindParam(":id",$id, PDO::PARAM_INT);
 		$stmt->execute();
 		return $stmt->fetch();
+	}
+
+	//ETAPA DE MATRICULA
+	public function turmasParaMatricula($idAluno) {
+
+		$sql = "SELECT id_turma, num_vagas, usuarios.nome as nome_professor, nome_disciplina , num_creditos from turmas
+
+			left join disciplinas on turmas.id_disciplina = disciplinas.id_disciplina
+        	left join professores on professores.id_professor = turmas.id_professor
+            left join usuarios on usuarios.id_usuario = professores.id_usuario
+
+			where 
+
+			#turmas ativas
+			turmas.situacao_turma = 1 
+
+			#somente turmas que determinado aluno reprovou ou não fez
+			and turmas.id_disciplina not in (select turmas.id_disciplina from alunos_turmas
+			left join turmas on turmas.id_turma = alunos_turmas.id_turma
+			where alunos_turmas.situacao_aprovacao = 'APROVADO' AND alunos_turmas.id_aluno = :idAluno)
+
+			#requisitos não cumpridos
+			and turmas.id_disciplina not in (select disciplinas_requisitos.id_disciplina_principal from alunos_turmas
+			inner join turmas on turmas.id_turma = alunos_turmas.id_turma
+			inner join disciplinas_requisitos on disciplinas_requisitos.id_disciplina_requisito = turmas.id_disciplina
+			where alunos_turmas.situacao_aprovacao != 'APROVADO' AND alunos_turmas.id_aluno = :idAluno)";
+
+		$stmt = DB::prepare($sql);
+		$stmt->bindParam(":idAluno", $idAluno);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 

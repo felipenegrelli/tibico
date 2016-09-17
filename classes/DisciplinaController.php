@@ -37,5 +37,14 @@ class DisciplinaController{
 
 		return $lista;
 	}
+
+	public function listaDisciplinasAluno($idAluno){
+		$disciplinaDAO = new DisciplinaDAO();
+		$lista = $disciplinaDAO->listAllFromStudent($idAluno);
+
+		return $lista;
+	}
+
+
 }
 ?>

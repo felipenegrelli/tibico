@@ -5,7 +5,10 @@ include_once 'header.php';
 include_once 'classes/DisciplinaController.php';
 
 $disciplinaController = new DisciplinaController();
-$listaDisciplinas = $disciplinaController->listaDisciplinas();
+if($_SESSION['id_aluno'])
+	$listaDisciplinas = $disciplinaController->listaDisciplinasAluno($_SESSION['id_aluno']);
+else
+	$listaDisciplinas = $disciplinaController->listaDisciplinas();
 
 ?>
  	<div id="top" class="row">

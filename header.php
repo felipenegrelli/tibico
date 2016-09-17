@@ -185,7 +185,10 @@ desired effect
         <?php } ?>
 
         <li><a href="PagExibirCursos.php"><i class="fa fa-link"></i> <span>Cursos</span></a></li>
-        
+        <?php if(!$_SESSION["id_professor"]){?>
+        <li><a href="PagCadastrarMatricula.php"><i class="fa fa-calendar"></i> <span>Efetuar Matricula</span></a></li>
+        <?php } ?>
+
       </ul>
       <!-- /.sidebar-menu -->
     </section>

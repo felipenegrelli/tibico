@@ -19,22 +19,19 @@ class FrequenciaDAO extends DB implements IDAO {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-	public function listAllFromTurma($id) {
-		$sql = "SELECT usuarios.nome, alunos_turmas.id_aluno
+	public function listaFaltasAlunoPorTurma($idAluno, $idTurma) {
+		$sql = "SELECT sum(num_faltas) as faltas FROM frequencias
 
-				FROM turmas
+				left join aulas on frequencias.id_aula = aulas.id_aula
 
-				LEFT JOIN alunos_turmas ON alunos_turmas.id_turma = turmas.id_turma
-				LEFT JOIN alunos ON alunos.id_aluno = alunos_turmas.id_aluno
-				LEFT JOIN usuarios on usuarios.id_usuario = alunos.id_usuario
-
-				WHERE turmas.id_turma = :id
-				ORDER BY usuarios.nome";
+				where id_aluno = :idAluno and aulas.id_turma = :idTurma
+				group by id_aluno";
 
 		$stmt = DB::prepare($sql);
-		$stmt->bindParam(":id", $id);
+		$stmt->bindParam(":idAluno", $idAluno);
+		$stmt->bindParam(":idTurma", $idTurma);
 		$stmt->execute();
-		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		return $stmt->fetch(PDO::FETCH_ASSOC);
 	}
 
 	public function findByUserId($id) {
@@ -47,15 +44,15 @@ class FrequenciaDAO extends DB implements IDAO {
 
 	public function insert($frequencia) {
 		
-		$sql = "INSERT INTO frequencias (id_aula, id_aluno, num_faltas) VALUES (:id_aluno, :num_faltas, :id_aula)";
-		$sql = "INSERT INTO frequencias (id_aula, id_aluno, num_faltas) 
-								VALUES (:id_aula, :id_aluno, :num_faltas)";
+		$sql = "INSERT INTO frequencias (id_aula, id_aluno, num_faltas) VALUES (:id_aula, :id_aluno, :num_faltas)";
 	    $stmt = DB::prepare($sql);
 	    $stmt->bindParam(":id_aula", $frequencia->idAula);
 	    $stmt->bindParam(":id_aluno", $frequencia->idAluno);
 	    $stmt->bindParam(":num_faltas", $frequencia->numFaltas);
 	    $stmt->execute();
 	}
+
+
 
 	public function update($aluno) {
 		/*

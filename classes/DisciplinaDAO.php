@@ -18,6 +18,19 @@ class DisciplinaDAO extends DB implements IDAO {
 		$stmt->execute();
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
+
+	public function listAllFromStudent($idAluno) {
+		$sql = "SELECT * from disciplinas
+				right join turmas on turmas.id_disciplina = disciplinas.id_disciplina
+				right join alunos_turmas on alunos_turmas.id_turma = turmas.id_turma
+				right join cursos on cursos.id_curso = disciplinas.id_curso 
+
+				where alunos_turmas.id_aluno = :idAluno";
+		$stmt = DB::prepare($sql);
+		$stmt->bindParam(":idAluno",$idAluno);
+		$stmt->execute();
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
 	 
 	public function insert($disciplina) {
 		$sql = "INSERT INTO disciplinas (nome, num_creditos, periodo_correspondente, area_disciplina, id_curso) VALUES (:nome, :num_creditos, :periodo_correspondente, :area_disciplina, :id_curso)";

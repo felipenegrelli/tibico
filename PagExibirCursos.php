@@ -8,9 +8,11 @@ $cursoController = new CursoController();
 $listaCursos = $cursoController->listaCursos();
 ?>
  	<div id="top" class="row">
+ 		<?php if(!$_SESSION['id_aluno']){ ?>
  		<div class="col-sm-6">
 			<a href="PagCadastrarCurso.php" class="btn btn-primary pull-left h2">Novo Curso</a>
 		</div>
+		<?php } ?>
 		<div class="col-sm-6">			
 			<div class="input-group h2">
 				<input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Itens">

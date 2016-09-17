@@ -12,7 +12,11 @@ $listaTurmas = $turmaController->listaTurmasDisciplina($idDisciplina);
 
  	<div id="top" class="row">
  		<div class="col-sm-6">
+ 			<?php if(!$_SESSION['id_aluno']){ ?>
 			<a href="pagCadastrarTurma.php?id_disciplina=<?php echo $idDisciplina; ?>" class="btn btn-primary pull-left h2">Nova Turma</a>
+			<?php }else{ ?>
+			<a href="pagCadastrarTurma.php?id_disciplina=<?php echo $idDisciplina; ?>" class="btn btn-primary pull-left h2">Efetuar Matricula</a>
+			<?php } ?>
 		</div>
 		<div class="col-sm-6">
 			<div class="input-group h2">
